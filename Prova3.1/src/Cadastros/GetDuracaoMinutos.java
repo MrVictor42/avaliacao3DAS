@@ -11,13 +11,21 @@ public class GetDuracaoMinutos {
 	
 	public int compute() {
 		
-		if (viagem.getMinutosTermino() > viagem.getMinutoInicio()) 
-			viagem.duracaoMinutos = viagem.getMinutosTermino() - viagem.getMinutoInicio();
+		if (minutosTerminoMaiorInicio()) 
+			viagem.duracaoMinutos = minutosTerminoMenosInicio();
 		else {
 			viagem.duracaoMinutos = 60 - viagem.getMinutoInicio() + viagem.getMinutosTermino();
 			if (viagem.duracaoMinutos == 60) //caso especial
 				viagem.duracaoMinutos = 0;
 		}
 		return viagem.duracaoMinutos;
+	}
+
+	private int minutosTerminoMenosInicio() {
+		return viagem.getMinutosTermino() - viagem.getMinutoInicio();
+	}
+
+	private boolean minutosTerminoMaiorInicio() {
+		return viagem.getMinutosTermino() > viagem.getMinutoInicio();
 	}
 }
